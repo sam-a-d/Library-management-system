@@ -39,10 +39,6 @@ class Order(models.Model):
     #     return self.str(user_id)
 
     @property
-    def get_delivered_status():
-        return self.order_status == 'Delivered'
-
-    @property
     def get_cart_items(self):
         ordered_books = self.orderitem_set().all()
         return self.ordered_books
