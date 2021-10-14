@@ -40,7 +40,7 @@ class Order(models.Model):
 
     @property
     def get_delivered_status():
-        return status == 'Delivered'
+        return self.order_status == 'Delivered'
 
     @property
     def get_cart_items(self):
