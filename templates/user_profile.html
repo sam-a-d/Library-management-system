@@ -1,0 +1,112 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+    
+{% block admin_base %}
+        <!-- Start: Cart Section -->
+        <div id="content" class="site-content">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+                    
+                    <div class="container mt-4">
+                        <div class="row">
+                            
+
+                            <div class="col-md-9">
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                            {% if request.user.member.profile_picture %}
+                                                <img src="{{request.user.member.profile_picture.url}}" alt="..." class="img-thumbnail">
+                                            {% endif %}
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="card text-white bg-dark mb-3">
+                                            <div class="card-header  text-center align-middle">User Profile of: {{user.username}} </div>
+
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p class="card-text">Email: {{user.email}}</p>
+                                                        <p class="card-text">Facebook: {{profile.facebook_profile}}</p>
+                                                        <p class="card-text">DOB: {{profile.date_of_birth}}</p>
+                                                        <p class="card-text">Gender: {{profile.gender}}</p>
+                                                    </div>
+                                                    <div class="col">  
+                                                        <p class="card-text">Phone: {{profile.phone_number}}</p>
+                                                        <p class="card-text">NID: {{profile.national_id_no}}</p>
+                                                        <p class="card-text">Postcode: {{profile.postcode}}</p>
+                                                        <p class="card-text">District: {{profile.addr_District}}</p>
+                                                    </div>
+                                                </div>
+                                              
+                                             
+                                            </div>
+                                            <div><a href="{% url 'user_profile_edit' %}" type="button" class="btn btn-info ml-3 mb-2">Edit Profile</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col">
+                                <div class="card text-white bg-success mb-3">
+                                    <div class="card-header  text-center align-middle">Order</div>
+                                    <div class="card-body">
+                                        <p class="card-text h1 text-center align-middle">{{order_count}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+
+                                <div class="card text-white bg-secondary mb-3">
+                                    <div class="card-header  text-center align-middle">Delivered</div>
+                                    <div class="card-body">
+                                        <p class="card-text h1 text-center align-middle">{{order_delivered}}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                            
+
+
+                        </div>
+
+                        <div class="row mt-5">
+                            
+                            <table class="table table-hover">
+                                <thead>
+                                <tr class="bg-info">
+                                    <th>Book</th>
+                                    <th>Order Date</th>
+                                    <th>Due Days</th>
+                                    <th>Order Status </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                
+                                    {% for order in orders %}
+                                    <tr class="table-success bg-success">
+                                        <td>{{order.book_id.name}}</td>
+                                        <td>{{order.order_date.date}}</td>
+                                        <td>{{order.order_date.date.day }}</td>
+                                        <td>{{order.status}}</td>                                        
+                                    </tr>
+                                        
+                                    {% endfor %}
+                                    
+                                </tbody>
+                            </table>
+                                
+                        </div>
+
+                    </div>
+
+                </main>
+            </div>
+
+            
+
+        </div>
+        <!-- End: Cart Section -->
+        
+ {% endblock admin_base %}

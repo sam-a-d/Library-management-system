@@ -1,0 +1,25 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+    
+{% block admin_base %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                    <div class="card text-white bg-info mb-3" style="max-width: 30rem;">
+                        <div class="card-header">Are you sure to delelete the book "{{order}}" for {{user}}?</div>
+                        <div class="card-body">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                
+                                <a href="{% url 'orders' %}" class="btn btn-primary">Cancel</a>
+                                <button href="" type="input" class="btn btn-danger">Confirm</button>
+                            </form>        
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock admin_base %}

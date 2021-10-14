@@ -1,0 +1,320 @@
+{% extends 'general_template.html' %}
+{% load static %}
+    
+{% block general_template %}
+        <!-- Start: Cart Checkout Section -->
+        <div id="content" class="site-content">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+                    <div class="checkout-main">
+                        <div class="container">
+                            <div class="row">
+                                <div class="cart-head">
+                                    <div class="col-xs-12 col-sm-6 account-option">
+                                        <strong>User: {{request.user.username}}</strong>
+                                        
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 library-info">
+                                        <ul>
+                                            <li>
+                                                <strong>Phone</strong>
+                                                {{request.user.member.phone_number}}
+                                            </li>
+                                            <li>
+                                                <strong>Email:</strong>
+                                                {{request.user.email}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <h2>Your order</h2>
+                                <a href="{% url 'cart' %}" type="button" class="btn btn-info float-right">Back to CART</a>
+                                <span class="underline left"></span>
+                                {% if cartItems.count >= 1 %}
+                                    <div class="col-md-12">
+                                        <article class="page type-page status-publish hentry">
+                                            <div class="entry-content">
+                                                <div class="woocommerce">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            
+                                                            
+                                                            <div class="woocommerce-checkout-review-order" id="order_review">
+                                                                <table class="shop_table woocommerce-checkout-review-order-table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="product-total">Image</th>
+                                                                            <th class="product-name">Book</th>
+                                                                            <th class="product-total">Book No</th>
+                                                                            <th class="product-total">Availability</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    
+                                                                    <tbody>
+                                                                        
+                                                                        {% for cartItem in cartItems %}
+                                                                
+                                                                        
+                                                                            
+                                                                        <tr class="cart_item">
+
+                                                                            <td class="">
+                                                                                <span class="woocommerce-Price-amount amount"><img src="{{cartItem.book.photo.url}}" class="img-thumbnail" style="height:80px"> </span>
+                                                                            </td>
+                                                                            
+                                                                            <td class="">
+                                                                                <span class="woocommerce-product-amount">{{cartItem.book.name}}</span>
+                                                                            </td>
+                                                                                                                                
+                                                                            <td class="">
+                                                                                <span class="woocommerce-product-amount">{{cartItem.book.library_book_no}}</span>
+                                                                            </td>
+
+                                                                            <td data-title="Price" class="product-price">
+                                                                    
+                                                                    {% if cartItem.book.stock_availability == False %}
+                                                                        <p>Not Available Now</p>
+                                                                    {% else %}
+                                                                        <p>This book is available</p>
+                                                                    {% endif %}
+                                                                        
+                                                                </td>
+                                                                        </tr>
+                                                                    {% endfor %}
+                                                                    </tbody>
+                                                                    <tfoot>
+                                                                        <tr></tr>
+                                                                        <tr class="bg-info">
+                                                                            <td>Shipping</td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td><strong class="shipping-amount"> 40 BDT</strong></td>
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <form class="" id="form" method="post" name="checkout">
+                                                        
+                                                        <div class="row">
+                                                            <div id="customer_details">
+                                                                <div class="col-xs-12 col-sm-12">
+                                                                    <div class="woocommerce-billing-fields">
+                                                                        <h2>Delivery Address</h2>
+                                                                        <span class="underline left"></span>
+                                                                        <div class="row">
+                                                                            <div class="billing-address-box">
+                                                                                
+                                                                                <div class="col-xs-12 col-sm-12">
+                                                                                    <p id="billing_address_1_field" class="form-row form-row form-row-wide address-field validate-required">
+                                                                                        <input type="text" id="address" placeholder="Address" name="billing_address_1" class="input-text" required=required>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-xs-12 col-sm-6">
+                                                                                    <p id="billing_city_field" class="form-row form-row form-row-wide address-field validate-required" data-o_class="form-row form-row form-row-wide address-field validate-required">
+                                                                                        <input type="text" id="district" placeholder="District" name="billing_city" class="input-text"  required=required>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-xs-12 col-sm-6">
+                                                                                    <p id="billing_state_field" class="form-row form-row form-row-first address-field validate-state validate-required" data-o_class="form-row form-row form-row-first address-field validate-required validate-state">
+                                                                                        <input type="text" id="upazilla" name="billing_state" placeholder="Upazilla" class="input-text"  required=required>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-xs-12 col-sm-6">
+                                                                                    <p id="billing_postcode_field" class="form-row form-row form-row-last address-field validate-postcode validate-required" data-o_class="form-row form-row form-row-last address-field validate-required validate-postcode">
+                                                                                        <input type="text" id="postcode" placeholder="Postcode" id="billing_postcode" name="billing_postcode" class="input-text "  required=required>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-xs-12 col-sm-6">
+                                                                                    <p id="billing_phone_field" class="form-row form-row form-row-last validate-required validate-phone">
+                                                                                        <input type="tel" id="phone" autocomplete="tel" placeholder="Phone" id="billing_phone" name="billing_phone" class="input-text "  required=required>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-xs-12 col-sm-12">
+                                                                                    <p> Payment Method </p>
+                                                                                    <div class="radio">
+                                                                                        <input id="payment-bkash" type="radio" value="payment-bkash" name="payment-method" required checked>
+                                                                                        <label for="payment-bkash" >Bkash</label>
+
+                                                                                        <input id="payment-rocket" type="radio" value="payment-rocket" name="payment-method">
+                                                                                        <label for="payment-rocket">Rocket</label>
+
+                                                                                        <input id="payment-cod" type="radio" value="payment-cod" name="payment-method">
+                                                                                        <label for="payment-cod">Cash on delivery</label>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-xs-12 pb-3">Please send the delivery fee via Bkash or Rocket and paste the transaction ID and the phone number you send the money from. We will process your request as soon as varifying the the order</div>
+                                                                                <div class="col-xs-12 col-sm-8">
+                                                                                    <p id="billing_state_field" class="form-row form-row form-row-first address-field validate-state validate-required" data-o_class="form-row form-row form-row-first address-field validate-required validate-state">
+                                                                                        <input type="text" id="transaction_id" name="transaction_id" placeholder="Transaction ID" class="input-text ">
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-xs-12 col-sm-4">
+                                                                                    <p id="billing_state_field" class="form-row form-row form-row-first address-field validate-state validate-required" data-o_class="form-row form-row form-row-first address-field validate-required validate-state">
+                                                                                        <input type="text" id="transaction_phone" name="transaction_phone" placeholder="Transaction phone no" class="input-text ">
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-xs-12 col-sm-12">
+                                                                                    <div class="checkbox">
+                                                                                        <input id="tnc" type="checkbox" value="agreeTnC" name="terms" required=required>
+                                                                                        <label for="tnc">I agree with all the terms and conditions</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-xs-12 col-sm-12">
+                                                                                    <button type="submit" value="submit" > Place Order </button>    
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="clear"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>	
+                                                        </div>
+                                                    </form>
+                                                    
+                                                        
+                                                </div>
+                                            </div><!-- .entry-content -->
+                                        </article>
+                                    </div>
+
+                                {% else %}
+                                    <h4>You do not have anything on the cart, please add books and then try to checkout </h4>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <!-- End: Cart Checkout Section -->
+
+        <!-- Start: Social Network -->
+        <section class="social-network section-padding">
+            <div class="container">
+                <div class="center-content">
+                    <h2 class="section-title">Follow Us</h2>
+                    <span class="underline center"></span>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <ul>
+                    <li>
+                        <a class="facebook" href="#" target="_blank">
+                            <span>
+                                <i class="fa fa-facebook-f"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="twitter" href="#" target="_blank">
+                            <span>
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="google" href="#" target="_blank">
+                            <span>
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rss" href="#" target="_blank">
+                            <span>
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="linkedin" href="#" target="_blank">
+                            <span>
+                                <i class="fa fa-linkedin"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="youtube" href="#" target="_blank">
+                            <span>
+                                <i class="fa fa-youtube"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- End: Social Network -->
+        <!-- Start Javascript -->
+        
+        <script>
+            form = document.getElementById("form")
+
+            
+            form.addEventListener("submit", function(e){
+                e.preventDefault();
+
+                submitFormdata();
+
+            })
+
+
+            function submitFormdata(){
+                
+            
+                var address     = document.getElementById("address").value;
+                var district    = document.getElementById("district").value;
+                var upazilla    = document.getElementById("upazilla").value;
+                var postcode    = document.getElementById("postcode").value;
+                var phone       = document.getElementById("phone").value;
+
+                var payment = document.querySelector('input[name="payment-method"]:checked').value;
+                
+                transaction_id = document.getElementById("transaction_id").value;
+                transaction_phone = document.getElementById("transaction_phone").value;
+                
+                var shippingInfo ={
+                    
+                    "address"   : address,
+                    "district"  : district,
+                    "upazilla"  : upazilla,
+                    "postcode"  : postcode,
+                    "phone"     : phone,
+                    "payment"   : payment,
+                    
+                    "transaction_id" : transaction_id,
+                    "transaction_phone" : transaction_phone,
+                };
+
+
+                var url = "/rental/process_order/";
+
+                fetch(url, {
+                    method : "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken,
+                    },
+                    body: JSON.stringify({ 'shippingInfo' : shippingInfo })
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    console.log('Transaction done');
+                    window.location.href = " {% url 'home' %} "
+                });          
+
+                
+            }
+
+        </script>
+
+        <!-- End Javascript -->
+
+
+{% endblock general_template %}

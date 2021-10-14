@@ -1,0 +1,112 @@
+{% extends 'general_template.html' %}
+{% load static %}
+    
+{% block general_template %}
+
+<!-- Start: Cart Section -->
+<div id="content" class="site-content">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+            <div class="cart-main">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            <div class="page type-page status-publish hentry">
+                                <div class="entry-content">
+                                    <div class="woocommerce table-tabs" id="responsiveTabs">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><b class="arrow-up"></b><a data-toggle="tab" href="#sectionA">Book Bag</a></li>
+                                            <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Holds (4)</a></li>
+                                            <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionC">My Checkouts (0)</a></li>
+                                            <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionD">My eBooks (1)</a></li>
+                                            <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionE">My Lists</a></li>
+                                            <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionF">Fines/Fees ($0.00)</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div id="sectionA" class="tab-pane fade in active">
+                                                <form method="post" action="http://libraria.demo.presstigers.com/cart-page.html">
+                                                    <table class="table table-bordered shop_table cart">
+                                                        <thead>
+                                                            <tr>
+                                                                
+                                                                <th class="product-name">Cover</th>
+                                                                <th class="product-name">Detail</th>
+                                                                <th class="product-price">Availability </th>
+                                                                <th class="product-quantity">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% for cartItem in cartItems %}
+                                                            <tr class="cart_item">                 
+                                                                <td data-title="Product" class="product-name">
+                                                                    
+                                                                    <img src="{{cartItem.book.photo.url}}" class="img-thumbnail" style="height:150px" alt="cart-product-1">
+                                                                    
+                                                                </td>
+                                                                <td data-title="Product" class="product-name">
+                                                                    <span class="product-detail">
+                                                                        <a href="#"><strong>{{cartItem.book.name}}</strong></a>
+                                                                        <span><strong>Book No:</strong> {{cartItem.book.library_book_no}}</span>
+                                                                        <span><strong>Author:</strong> {{cartItem.book.author}}</span>
+                                                                        <span><strong>Publisher:</strong> {{cartItem.book.publisher}}</span>
+                                                                    </span>
+                                                                </td>
+                                                                </td>
+                                                                <td data-title="Price" class="product-price">
+                                                                    
+                                                                    {% if cartItem.book.stock_availability == False %}
+                                                                        <p>Not Available Now</p>
+                                                                    {% else %}
+                                                                        <p>This book is available</p>
+                                                                    {% endif %}
+                                                                        
+                                                                </td>
+                                                                <td data-title="action" class="">
+                                                                    <div class="text-light">
+                                                                        <span type="button" data-action="remove" data-product={{cartItem.book.id}} class="btn btn-warning update-cart">Delete From Cart</span>
+                                                                        
+                                                                        
+                                                                    </div>
+                                                            </tr>
+                                                            {% endfor %}    
+   
+                                                        </tbody>
+                                                    </table>
+                                                </form>
+                                                <a href="{% url 'checkout' %}" type="button" class="btn btn-success text-light float-right">Checkout Items</a>
+                                            </div>
+                                            <div id="sectionB" class="tab-pane fade in">
+                                                <h5>Lorem Ipsum Dolor</h5>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
+                                            </div>
+                                            <div id="sectionC" class="tab-pane fade in">
+                                                <h5>Lorem Ipsum Dolor</h5>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
+                                            </div>
+                                            <div id="sectionD" class="tab-pane fade in">
+                                                <h5>Lorem Ipsum Dolor</h5>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
+                                            </div>                                                    
+                                            <div id="sectionE" class="tab-pane fade in">
+                                                <h5>Lorem Ipsum Dolor</h5>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
+                                            </div>                                                    
+                                            <div id="sectionF" class="tab-pane fade in">
+                                                <h5>Lorem Ipsum Dolor</h5>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- .entry-content -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<!-- End: Cart Section -->
+
+{% endblock general_template %}

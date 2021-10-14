@@ -1,0 +1,93 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+    
+{% block admin_base %}
+        <!-- Start: Cart Section -->
+        <div id="content" class="site-content">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+                    
+                    <div class="container mt-4">
+                        <div class="row">
+                            
+
+                            <div class="col-md-6">
+
+                                <div class="card text-white bg-dark mb-3">
+                                    <div class="card-header  text-center align-middle">User</div>
+                                    <div class="card-body">
+                                        <p class="card-text">Username: {{user.username}}</p>
+                                        <p class="card-text">Email: {{user.email}}</p>
+                                       
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col">
+                                <div class="card text-white bg-success mb-3">
+                                    <div class="card-header  text-center align-middle">Order</div>
+                                    <div class="card-body">
+                                        <p class="card-text h1 text-center align-middle">{{order_count}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+
+                                <div class="card text-white bg-secondary mb-3">
+                                    <div class="card-header  text-center align-middle">Delivered</div>
+                                    <div class="card-body">
+                                        <p class="card-text h1 text-center align-middle">{{order_delivered}}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                            
+
+
+                        </div>
+
+                        <div class="row mt-5">
+                            
+                            <table class="table table-hover">
+                                <thead>
+                                <tr class="bg-info">
+                                    <th>Book</th>
+                                    <th>Order Date</th>
+                                    <th>Due Days</th>
+                                    <th>Order Status </th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                
+                                    {% for order in orders %}
+                                    <tr class="table-success bg-success">
+                                        <td>{{order.book_id.name}}</td>
+                                        <td>{{order.order_date.date}}</td>
+                                        <td>{{order.order_date.date.day }}</td>
+                                        <td>{{order.status}}</td>
+                                        <td>
+                                          <a href="{% url 'update_order' order.id %}" type="button" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                                          <a href="{% url 'delete_order' order.id %}" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                        
+                                    {% endfor %}
+                                    
+                                </tbody>
+                            </table>
+                                
+                        </div>
+
+                    </div>
+
+                </main>
+            </div>
+
+            
+
+        </div>
+        <!-- End: Cart Section -->
+        
+ {% endblock admin_base %}

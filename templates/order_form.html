@@ -1,0 +1,31 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+    
+{% block admin_base %}
+        <!-- Start: Cart Section -->
+        <div id="content" class="site-content">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+                    
+                    <div class="container mt-4">
+                        <div class="row">
+                        
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                {{OrderForm}}
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                            
+                        </div>
+
+                    </div>
+
+                </main>
+            </div>
+
+            
+
+        </div>
+        <!-- End: Cart Section -->
+        
+ {% endblock admin_base %}
