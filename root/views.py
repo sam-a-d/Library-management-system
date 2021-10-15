@@ -23,7 +23,7 @@ def home(request):
 
 def books(request):
 
-    books = Book.objects.all()
+    books = Book.objects.filter(stock_availability=True)
     genres = Genre.objects.all()
 
     context = {
@@ -38,7 +38,7 @@ def books(request):
 # @allowed_users(allowed_groups=['admin'])
 @admin_only_access
 def orders(request):
-    orders = Order.objects.all().order_by("-order_date")
+    orders = Order.objects.filter(order_placed=True).order_by("-order_date")
     totoal_customer = User.objects.all().count()
     totoal_book = Book.objects.all().count()
     total_order = orders.count()

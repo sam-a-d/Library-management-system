@@ -17,7 +17,7 @@ class Order(models.Model):
         ('Delivered', 'Delivered')
     )
     # TODO: Define fields here
-    user_id = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    user_id = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     order_date = models.DateTimeField(auto_now_add=True, null=True)
     status = models.TextField(default="Pending", choices=order_status)
     order_placed = models.BooleanField(default=False)
@@ -48,7 +48,7 @@ class OrderItem(models.Model):
     """Model definition for OrderItem."""
 
     # TODO: Define fields here
-    order = models.ForeignKey(Order, null=True, on_delete=models.SET_NULL)
+    order = models.ForeignKey(Order, null=True, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, null=True, on_delete=models.SET_NULL)
     date_added = models.DateTimeField(auto_now_add=True)
 

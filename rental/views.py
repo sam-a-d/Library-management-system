@@ -119,23 +119,18 @@ def processOrder(request):
     order_payment_transaction_id = data['shippingInfo']['transaction_id']
     order_payment_phone = data['shippingInfo']['transaction_phone']
 
-    # Shipping.objects.create(
-
-    #     user=current_user,
-    #     order=current_order,
-    #     ship_address=ship_address,
-    #     ship_district=ship_district,
-    #     ship_upazilla=ship_upazilla,
-    #     ship_postcode=ship_postcode,
-    #     ship_phone=ship_phone,
-
-    # )
-
     # update the order table
     current_order.order_placed = True
     current_order.payMethod = order_payment_method
     current_order.transaction_id = order_payment_transaction_id
     current_order.transaction_phone = order_payment_phone
+
+    # Make the book(s) unavailable imidiately when someone placed an order for that book(s)
+    for item in current_order.orderitem_set.all():
+        item.book.stock_availability = False
+        item.book.save()
+
+    # print(dir(current_order.orderitem_set.all()))
 
     current_order.save()
 
