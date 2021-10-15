@@ -10,7 +10,7 @@ from user.decorators import allowed_users, admin_only_access
 
 
 from .forms import OrderForm
-from .filters import OrderFilter
+from .filters import OrderFilter, BookFilter
 
 
 # Create your views here.
@@ -26,9 +26,12 @@ def books(request):
     books = Book.objects.filter(stock_availability=True)
     genres = Genre.objects.all()
 
+    book_filter = BookFilter(request.GET, queryset=books)
+    books = book_filter.qs
     context = {
         'books': books,
         'genres': genres,
+        'book_filter': book_filter,
     }
 
     return render(request, 'books.html', context)
@@ -48,9 +51,14 @@ def orders(request):
     order_filter = OrderFilter(request.GET, queryset=orders)
     orders = order_filter.qs
 
-    context = {'orders': orders, 'total_order': total_order,
-               'total_delivered': total_delivered, 'total_pending': total_pending,
-               'total_customer': totoal_customer, 'totoal_book': totoal_book, 'order_filter': order_filter}
+    context = {
+        'orders': orders, 'total_order': total_order,
+        'total_delivered': total_delivered,
+        'total_pending': total_pending,
+        'total_customer': totoal_customer,
+        'totoal_book': totoal_book,
+        'order_filter': order_filter
+    }
 
     return render(request, 'orders.html', context)
 

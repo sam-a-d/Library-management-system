@@ -130,8 +130,6 @@ def processOrder(request):
         item.book.stock_availability = False
         item.book.save()
 
-    # print(dir(current_order.orderitem_set.all()))
-
     current_order.save()
 
     return JsonResponse('Form submitted!', safe=False)
