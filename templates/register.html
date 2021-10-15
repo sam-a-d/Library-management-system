@@ -58,6 +58,9 @@
                                                             <div class="clear"></div>
                                                         </form> 
                                                         {{form.errors}}
+                                                        {% for message in messages %}
+                                                                <p class="text-danger mt-3">{{message}}</p>
+                                                        {% endfor %}
                                                     </div>
                                                                                                                                  
                                                 </div>

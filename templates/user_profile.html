@@ -86,7 +86,11 @@
                                 
                                     {% for order in orders %}
                                     <tr class="table-success bg-success">
-                                        <td>{{order.book_id.name}}</td>
+                                        <td>
+                                            {% for item in order.orderitem_set.all %}
+                                                <span>{{item}}({{item.book.id}}),</span>
+                                            {% endfor %}
+                                        </td> 
                                         <td>{{order.order_date.date}}</td>
                                         <td>{{order.order_date.date.day }}</td>
                                         <td>{{order.status}}</td>                                        

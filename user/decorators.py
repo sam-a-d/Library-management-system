@@ -15,6 +15,19 @@ def authenticated_user(main_func):
     return wrapper_func
 
 
+def already_authenticated(main_func):
+
+    def wrapper_func(request, *args, **kwargs):
+
+        if request.user.is_authenticated:
+            return redirect('home')
+
+        else:
+            return main_func(request, *args, **kwargs)
+
+    return wrapper_func
+
+
 def allowed_users(allowed_groups=[]):
 
     def decorator(main_func):

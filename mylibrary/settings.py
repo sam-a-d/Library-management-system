@@ -42,6 +42,8 @@ INSTALLED_APPS = [
 
     'django_filters',
     'rental',
+
+    'django_email_verification',
 ]
 
 MIDDLEWARE = [
@@ -113,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Dhaka'
 
 USE_I18N = True
 
@@ -142,3 +144,27 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/images')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+def verified_callback(user):
+    user.is_active = True
+
+
+EMAIL_VERIFIED_CALLBACK = verified_callback
+EMAIL_FROM_ADDRESS = 'it@ysibangla.com'
+EMAIL_MAIL_SUBJECT = 'Confirm your email'
+EMAIL_MAIL_HTML = 'auth/mail_body.html'
+EMAIL_MAIL_PLAIN = 'auth/mail_body.txt'
+EMAIL_TOKEN_LIFE = 60 * 60
+EMAIL_PAGE_TEMPLATE = 'auth/confirm_template.html'
+EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/'
+
+# For Django Email Backend
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = 'email-smtp.us-east-2.amazonaws.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'AKIAQ6K7XKNMD4OGZOHL'
+# os.environ['password_key'] suggested
+EMAIL_HOST_PASSWORD = 'BBdDlUZRvFrnT3QxaYtm5ESM7+IcG6zZQ9qmqEM98YbW'
+EMAIL_USE_TLS = True
