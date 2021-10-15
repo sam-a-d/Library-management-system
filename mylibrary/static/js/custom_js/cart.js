@@ -39,8 +39,12 @@ function updateUserOrder(productId, action) {
 
         .then((data) => {
             if (action == 'add') {
-                window.FlashMessage.success('This is a successs flash message !');
-                alert(data)
+                $(document).ready(function () {
+                    flashy(data, {
+                        type: 'flashy__success',
+                        icon: '<i class="fa fa-close"> </i>'
+                    });
+                });
             }
             else {
                 location.reload()
