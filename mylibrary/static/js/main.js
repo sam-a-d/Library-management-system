@@ -107,50 +107,50 @@ $(function () {
     //--------------------------------------------------------
     var selectObj = $('select');
     var selectListObj = $('ul.select-list');
-    selectObj.each(function () {
-        var $this = $(this), numberOfOptions = $(this).children('option').length;
+    // selectObj.each(function () {
+    //     var $this = $(this), numberOfOptions = $(this).children('option').length;
 
-        $this.addClass('select-hidden');
-        $this.wrap('<div class="select"></div>');
-        $this.after('<div class="select-styled"></div>');
+    //     // $this.addClass('select-hidden');
+    //     // $this.wrap('<div class="select"></div>');
+    //     // $this.after('<div class="select-styled"></div>');
 
-        var $styledSelect = $this.next('div.select-styled');
-        $styledSelect.text($this.children('option').eq(0).text());
+    //     var $styledSelect = $this.next('div.select-styled');
+    //     $styledSelect.text($this.children('option').eq(0).text());
 
-        var $list = $('<ul />', {
-            'class': 'select-list'
-        }).insertAfter($styledSelect);
+    //     var $list = $('<ul />', {
+    //         'class': 'select-list'
+    //     }).insertAfter($styledSelect);
 
-        for (var i = 0; i < numberOfOptions; i++) {
-            $('<li />', {
-                text: $this.children('option').eq(i).text(),
-                rel: $this.children('option').eq(i).val()
-            }).appendTo($list);
-        }
+    //     for (var i = 0; i < numberOfOptions; i++) {
+    //         $('<li />', {
+    //             text: $this.children('option').eq(i).text(),
+    //             rel: $this.children('option').eq(i).val()
+    //         }).appendTo($list);
+    //     }
 
-        var $listItems = $list.children('li');
+    //     var $listItems = $list.children('li');
 
-        $styledSelect.on('click', function (e) {
-            e.stopPropagation();
-            $('div.select-styled.active').not(this).each(function () {
-                $(this).removeClass('active').next(selectListObj).hide();
-            });
-            $(this).toggleClass('active').next(selectListObj).toggle();
-        });
+    //     $styledSelect.on('click', function (e) {
+    //         e.stopPropagation();
+    //         $('div.select-styled.active').not(this).each(function () {
+    //             $(this).removeClass('active').next(selectListObj).hide();
+    //         });
+    //         $(this).toggleClass('active').next(selectListObj).toggle();
+    //     });
 
-        $listItems.on('click', function (e) {
-            e.stopPropagation();
-            $styledSelect.text($(this).text()).removeClass('active');
-            $this.val($(this).attr('rel'));
-            $list.hide();
-        });
+    //     $listItems.on('click', function (e) {
+    //         e.stopPropagation();
+    //         $styledSelect.text($(this).text()).removeClass('active');
+    //         $this.val($(this).attr('rel'));
+    //         $list.hide();
+    //     });
 
-        $(document).on('click', function () {
-            $styledSelect.removeClass('active');
-            $list.hide();
-        });
+    //     $(document).on('click', function () {
+    //         $styledSelect.removeClass('active');
+    //         $list.hide();
+    //     });
 
-    });
+    // });
 
     //Facts Counter
     //--------------------------------------------------------
@@ -267,13 +267,13 @@ $(function () {
     //--------------------------------------------------------
     var requiredFieldObj = $('.input-required');
 
-    requiredFieldObj.find('input').on('focus',function(){
-        if(!$(this).parent(requiredFieldObj).find('label').hasClass('hide')){
+    requiredFieldObj.find('input').on('focus', function () {
+        if (!$(this).parent(requiredFieldObj).find('label').hasClass('hide')) {
             $(this).parent(requiredFieldObj).find('label').addClass('hide');
         }
     });
-    requiredFieldObj.find('input').on('blur',function(){
-        if($(this).val() === '' && $(this).parent(requiredFieldObj).find('label').hasClass('hide')){
+    requiredFieldObj.find('input').on('blur', function () {
+        if ($(this).val() === '' && $(this).parent(requiredFieldObj).find('label').hasClass('hide')) {
             $(this).parent(requiredFieldObj).find('label').removeClass('hide');
         }
     });
@@ -297,17 +297,17 @@ $(function () {
     var popularWidthD1 = 370;
     var popularMarginD1 = 54;
 
-    if($(window).width() <= 1199) {
+    if ($(window).width() <= 1199) {
         popularSlidesD1 = 2;
         popularWidthD1 = 330;
         popularMarginD1 = 37;
     }
-    if($(window).width() <= 991) {
+    if ($(window).width() <= 991) {
         popularSlidesD1 = 2;
         popularWidthD1 = 350;
         popularMarginD1 = 20;
     }
-    if($(window).width() <= 767) {
+    if ($(window).width() <= 767) {
         popularSlidesD1 = 1;
         popularWidthD1 = 320;
         popularMarginD1 = 0;
@@ -332,17 +332,17 @@ $(function () {
     var popularWidthD2 = 360;
     var popularMarginD2 = 30;
 
-    if($(window).width() <= 1199) {
+    if ($(window).width() <= 1199) {
         popularSlidesD2 = 3;
         popularWidthD2 = 300;
         popularMarginD2 = 20;
     }
-    if($(window).width() <= 991) {
+    if ($(window).width() <= 991) {
         popularSlidesD2 = 2;
         popularWidthD2 = 350;
         popularMarginD2 = 20;
     }
-    if($(window).width() <= 767) {
+    if ($(window).width() <= 767) {
         popularSlidesD2 = 1;
         popularWidthD2 = 320;
         popularMarginD2 = 0;
@@ -422,7 +422,7 @@ $(function () {
     });
 });
 
-$( window ).load(function() {
+$(window).load(function () {
     //Masonry
     //--------------------------------------------------------
     var girdFieldObj = $('.grid');
