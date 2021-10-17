@@ -18,7 +18,13 @@ from .filters import OrderFilter, BookFilter
 
 def home(request):
 
-    return render(request, 'home.html')
+    books = Book.objects.filter(stock_availability=True)
+    me = "Samad"
+    book_filter = BookFilter(request.GET, queryset=books)
+    context = {
+        'book_filter': book_filter,
+    }
+    return render(request, 'home.html', context)
 
 
 def books(request):

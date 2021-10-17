@@ -19,7 +19,8 @@ class OrderFilter(django_filters.FilterSet):
 
 
 class BookFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(lookup_expr='icontains')
 
     class Meta:
         model = Book
-        fields = ['author', 'genre', 'publisher', 'language']
+        fields = ['name', 'author', 'genre', 'publisher', 'language']

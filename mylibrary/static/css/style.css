@@ -19086,7 +19086,7 @@ a:focus {
 }
 .layout-v3 #home-v1-header-carousel .filter-box .form-group {
   float: left;
-  width: 33%;
+  width: 100%;
 }
 @media (max-width: 767px) {
   .layout-v3 #home-v1-header-carousel .filter-box .form-group {
@@ -19136,6 +19136,11 @@ a:focus {
 .layout-v3 #home-v1-header-carousel .filter-box input {
   border-color: #595959;
   border-radius: 3px 0 0 3px;
+  width: 100%;
+  background: transparent;
+  height: 50px;
+  color: #fff;
+  font-size: 2rem;
 }
 @media (max-width: 767px) {
   .layout-v3 #home-v1-header-carousel .filter-box input {
