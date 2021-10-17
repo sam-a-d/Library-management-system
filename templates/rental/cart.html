@@ -7,7 +7,7 @@
 <div id="content" class="site-content">
     <div id="primary" class="content-area">
         <main id="main" class="site-main">
-            <div class="cart-main">
+            <div class="cart-main" style="min-height: 100vh">
                 <div class="container">
                     <div class="row">
                         
@@ -15,14 +15,9 @@
                             <div class="page type-page status-publish hentry">
                                 <div class="entry-content">
                                     <div class="woocommerce table-tabs" id="responsiveTabs">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active"><b class="arrow-up"></b><a data-toggle="tab" href="#sectionA">Book Bag</a></li>
-                                            <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Holds (4)</a></li>
-                                            <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionC">My Checkouts (0)</a></li>
-                                            <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionD">My eBooks (1)</a></li>
-                                            <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionE">My Lists</a></li>
-                                            <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionF">Fines/Fees ($0.00)</a></li>
-                                        </ul>
+                                        <h3 class="text-center">My CART</h3>
+                                        <hr class="text-center">
+                                        {% if cartItems.count >= 1 %}
                                         <div class="tab-content">
                                             <div id="sectionA" class="tab-pane fade in active">
                                                 <form method="post" action="http://libraria.demo.presstigers.com/cart-page.html">
@@ -42,7 +37,6 @@
                                                                 <td data-title="Product" class="product-name">
                                                                     
                                                                     <img src="{{cartItem.book.photo.url}}" class="img-thumbnail" style="height:150px" alt="cart-product-1">
-                                                                    
                                                                 </td>
                                                                 <td data-title="Product" class="product-name">
                                                                     <span class="product-detail">
@@ -65,8 +59,6 @@
                                                                 <td data-title="action" class="">
                                                                     <div class="text-light">
                                                                         <span type="button" data-action="remove" data-product={{cartItem.book.id}} class="btn btn-warning update-cart">Delete From Cart</span>
-                                                                        
-                                                                        
                                                                     </div>
                                                             </tr>
                                                             {% endfor %}    
@@ -74,29 +66,18 @@
                                                         </tbody>
                                                     </table>
                                                 </form>
-                                                <a href="{% url 'checkout' %}" type="button" class="btn btn-success text-light float-right">Checkout Items</a>
+                                                <a href="{% url 'checkout' %}" type="button" class="btn btn-info text-light float-right" style="float:right; margin:2px;">Checkout Items</a>
+                                                &nbsp;
+                                                <a href="{% url 'books' %}" type="button" class="btn btn-success text-light float-right" style="float:right; margin:2px;">Add More Books</a>
                                             </div>
                                             <div id="sectionB" class="tab-pane fade in">
                                                 <h5>Lorem Ipsum Dolor</h5>
                                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
                                             </div>
-                                            <div id="sectionC" class="tab-pane fade in">
-                                                <h5>Lorem Ipsum Dolor</h5>
-                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
-                                            </div>
-                                            <div id="sectionD" class="tab-pane fade in">
-                                                <h5>Lorem Ipsum Dolor</h5>
-                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
-                                            </div>                                                    
-                                            <div id="sectionE" class="tab-pane fade in">
-                                                <h5>Lorem Ipsum Dolor</h5>
-                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
-                                            </div>                                                    
-                                            <div id="sectionF" class="tab-pane fade in">
-                                                <h5>Lorem Ipsum Dolor</h5>
-                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
-                                            </div>
                                         </div>
+                                        {% else %}
+                                        <h5 class="text-center">You do not have anything in the CART, please add books and then try to checkout </h5>
+                                        {% endif %}
                                     </div>
                                 </div><!-- .entry-content -->
                             </div>
