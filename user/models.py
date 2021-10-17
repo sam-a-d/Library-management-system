@@ -44,7 +44,7 @@ class Member(models.Model):
     profession = models.CharField(max_length=50, null=True, default='')
     phone_number = models.IntegerField(null=True)
     facebook_profile = models.CharField(max_length=120, null=True)
-    national_id_no = models.IntegerField(null=True)
+    national_id_no = models.CharField(null=True, blank=True, max_length=17)
     addr_division = models.ForeignKey(
         Division, null=True, on_delete=models.SET_NULL)
     addr_District = models.CharField(max_length=40, null=True)

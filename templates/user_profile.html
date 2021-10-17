@@ -1,13 +1,13 @@
-{% extends 'admin_base.html' %}
+{% extends 'general_template.html' %}
 {% load static %}
     
-{% block admin_base %}
+{% block general_template %}
         <!-- Start: Cart Section -->
         <div id="content" class="site-content">
             <div id="primary" class="content-area">
                 <main id="main" class="site-main">
                     
-                    <div class="container mt-4">
+                    <div class="container mt-4 mvh-100 mt-30">
                         <div class="row">
                             
 
@@ -18,21 +18,22 @@
                                             {% if request.user.member.profile_picture %}
                                                 <img src="{{request.user.member.profile_picture.url}}" alt="..." class="img-thumbnail">
                                             {% endif %}
+                                            <div><a href="{% url 'user_profile_edit' %}" type="button" class="btn btn-info" style="margin-top:10px;">Edit Profile</a></div>
                                     </div>
                                     <div class="col-md-9">
-                                        <div class="card text-white bg-dark mb-3">
-                                            <div class="card-header  text-center align-middle">User Profile of: {{user.username}} </div>
+                                        <div class="panel panel-default text-white mb-3">
+                                            <div class="panel-heading text-center align-middle">User Profile of: {{user.username}} </div>
 
-                                            <div class="card-body">
+                                            <div class="panel-body">
                                                 <div class="row">
-                                                    <div class="col">
-                                                        <p class="card-text">Email: {{user.email}}</p>
-                                                        <p class="card-text">Facebook: {{profile.facebook_profile}}</p>
-                                                        <p class="card-text">DOB: {{profile.date_of_birth}}</p>
-                                                        <p class="card-text">Gender: {{profile.gender}}</p>
+                                                    <div class="col-md-6">
+                                                        <p class="card-text"><i class="fa fa-envelope"></i> {{user.email}}</p>
+                                                        <p class="card-text"><i class="fa fa-facebook"></i> {{profile.facebook_profile}}</p>
+                                                        <p class="card-text"><i class="fa fa-phone"></i> {{profile.phone_number}}</p>
+                                                        <p class="card-text"><i class="fa fa-calendar"></i> {{profile.date_of_birth}}</p>
                                                     </div>
-                                                    <div class="col">  
-                                                        <p class="card-text">Phone: {{profile.phone_number}}</p>
+                                                    <div class="col-md-6">  
+                                                        <p class="card-text">Gender: {{profile.gender}}</p>
                                                         <p class="card-text">NID: {{profile.national_id_no}}</p>
                                                         <p class="card-text">Postcode: {{profile.postcode}}</p>
                                                         <p class="card-text">District: {{profile.addr_District}}</p>
@@ -41,29 +42,32 @@
                                               
                                              
                                             </div>
-                                            <div><a href="{% url 'user_profile_edit' %}" type="button" class="btn btn-info ml-3 mb-2">Edit Profile</a></div>
+                                            
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
-                            <div class="col">
-                                <div class="card text-white bg-success mb-3">
-                                    <div class="card-header  text-center align-middle">Order</div>
-                                    <div class="card-body">
-                                        <p class="card-text h1 text-center align-middle">{{order_count}}</p>
+
+                            <div class="col-md-3">
+                                <div class="col-md-6">
+                                    <div class="panel panel-default text-white mb-3">
+                                        <div class="panel-heading text-center align-middle">Order</div>
+                                        <div class="panel-body">
+                                            <p class="card-text h1 text-center align-middle">{{order_count}}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col">
+                                <div class="col-md-6">
 
-                                <div class="card text-white bg-secondary mb-3">
-                                    <div class="card-header  text-center align-middle">Delivered</div>
-                                    <div class="card-body">
-                                        <p class="card-text h1 text-center align-middle">{{order_delivered}}</p>
+                                    <div class="panel panel-default text-white bg-secondary mb-3">
+                                        <div class="panel-heading text-center align-middle">Delivered</div>
+                                        <div class="panel-body">
+                                            <p class="card-text h1 text-center align-middle">{{order_delivered}}</p>
+                                        </div>
                                     </div>
-                                </div>
 
+                                </div>
                             </div>
                             
                             
@@ -71,33 +75,31 @@
 
                         </div>
 
-                        <div class="row mt-5">
-                            
-                            <table class="table table-hover">
+                        <div class="row mt-5 mt-30">
+                            <table class="table table-bordered shop_table cart table-hover">
                                 <thead>
-                                <tr class="bg-info">
-                                    <th>Book</th>
-                                    <th>Order Date</th>
-                                    <th>Due Days</th>
-                                    <th>Order Status </th>
-                                </tr>
+                                    <tr class="bg-info">
+                                        <th class="product-name">Books</th>
+                                        <th class="product-name">Order Date</th>
+                                        <th class="product-price">Order Days </th>
+                                        <th class="product-quantity">Order Status</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                
                                     {% for order in orders %}
-                                    <tr class="table-success bg-success">
-                                        <td>
+                                    <tr class="cart_item">                 
+                                        <td data-title="Product" class="product-name">
                                             {% for item in order.orderitem_set.all %}
-                                                <span>{{item}}({{item.book.id}}),</span>
+                                                <p>{{item}} | book id: {{item.book.id}}</p>
                                             {% endfor %}
-                                        </td> 
+                                        </td>
                                         <td>{{order.order_date.date}}</td>
-                                        <td>{{order.order_date.date.day }}</td>
-                                        <td>{{order.status}}</td>                                        
-                                    </tr>
+                                        <td>{{order.order_date.date | timesince }}</td>
+                                        <td>{{order.status}}</td>            
                                         
-                                    {% endfor %}
-                                    
+                                    </tr>
+                                    {% endfor %}    
+
                                 </tbody>
                             </table>
                                 
@@ -113,4 +115,4 @@
         </div>
         <!-- End: Cart Section -->
         
- {% endblock admin_base %}
+ {% endblock general_template %}

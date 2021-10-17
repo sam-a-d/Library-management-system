@@ -2,8 +2,9 @@
 {% load static %}
     
 {% block general_template %}
+    
         <!-- Start: Cart Section -->
-        <div id="content" class="site-content">
+        <div id="content" class="site-content mvh-100 mt-30 w-100per">
             <div id="primary" class="content-area">
                 <main id="main" class="site-main">
                     
@@ -11,17 +12,15 @@
 
 
                         <div class="row"> 
-                            <form method="POST" action="" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                {{form.as_p }}
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                            {% comment %} <form method="POST">
-                                {{form.as_p}}
-                            </form> {% endcomment %}
-
+                            <div class="col-md-6 sm-12 vcenter">
+                                <form method="POST" action="" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{form.as_p }}
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
                         </div>
-                        <div class="row mt-3"> 
+                        <div class="row mt-30"> 
                             <a href="{% url 'user-profile' %}"><button type="button" class="btn btn-info">Return to profile page</button></a>
                         </div>
                     </div>

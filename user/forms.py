@@ -10,4 +10,4 @@ class UserProfileUpdateForm(ModelForm):
 
         model = Member
         fields = '__all__'
-        exclude = ['user', 'national_id_no', 'library_card_no']
+        exclude = ['user', 'library_card_no']
