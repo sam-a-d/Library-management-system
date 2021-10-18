@@ -76,7 +76,8 @@
                                             </div>
                                         </div>
                                         {% else %}
-                                        <h5 class="text-center">You do not have anything in the CART, please add books and then try to checkout </h5>
+                                            <h5 class="text-center">You do not have anything in the CART, please <a href="{% url 'books' %}" style="margin-left:3px;" class="btn btn-success text-light"">Add Books in the CART</a> and then try to checkout </h5>
+                                        
                                         {% endif %}
                                     </div>
                                 </div><!-- .entry-content -->

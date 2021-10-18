@@ -11,28 +11,38 @@
                         <div class="row">
                             
 
-                            <div class="col-md-9">
+                            <div class="col-md-4">
 
                                 <div class="row">
-                                    <div class="col-md-3">
-                                            {% if request.user.member.profile_picture %}
-                                                <img src="{{request.user.member.profile_picture.url}}" alt="..." class="img-thumbnail">
-                                            {% endif %}
-                                            <div><a href="{% url 'user_profile_edit' %}" type="button" class="btn btn-info" style="margin-top:10px;">Edit Profile</a></div>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="panel panel-default text-white mb-3">
+                                    
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {% if request.user.member.profile_picture %}
+                                                    <img src="{{request.user.member.profile_picture.url}}" alt="..." width="150" style="border-radius:10px" >
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-md-6 mt-20">
+                                                <div class="panel panel-default text-white mb-3 bg-info">
+                                                    <div class="panel-heading text-center align-middle">Member ID</div>
+                                                    <div class="panel-body">
+                                                        <p class="card-text h1 text-center align-middle">{{user.member.library_card_no}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="panel panel-default text-white mb-3 mt-20 profile-panel">
                                             <div class="panel-heading text-center align-middle">User Profile of: {{user.username}} </div>
 
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-12">
                                                         <p class="card-text"><i class="fa fa-envelope"></i> {{user.email}}</p>
                                                         <p class="card-text"><i class="fa fa-facebook"></i> {{profile.facebook_profile}}</p>
                                                         <p class="card-text"><i class="fa fa-phone"></i> {{profile.phone_number}}</p>
                                                         <p class="card-text"><i class="fa fa-calendar"></i> {{profile.date_of_birth}}</p>
-                                                    </div>
-                                                    <div class="col-md-6">  
+                                                        <hr class="text-center">
                                                         <p class="card-text">Gender: {{profile.gender}}</p>
                                                         <p class="card-text">NID: {{profile.national_id_no}}</p>
                                                         <p class="card-text">Postcode: {{profile.postcode}}</p>
@@ -44,64 +54,73 @@
                                             </div>
                                             
                                         </div>
+                                        <div><a href="{% url 'user_profile_edit' %}" type="button" class="btn btn-info" style="margin-top:10px;">Edit Profile</a></div>
                                     </div>
+                                    
+
+
                                 </div>
 
                             </div>
 
-                            <div class="col-md-3">
-                                <div class="col-md-6">
-                                    <div class="panel panel-default text-white mb-3">
-                                        <div class="panel-heading text-center align-middle">Order</div>
-                                        <div class="panel-body">
-                                            <p class="card-text h1 text-center align-middle">{{order_count}}</p>
+                            
+                            <div class="col-md-8">
+                                <div class="row mt-20">
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <div class="panel panel-default text-white">
+                                                <div class="panel-heading text-center align-middle">Total Orders</div>
+                                                <div class="panel-body">
+                                                    <p class="card-text h1 text-center align-middle">{{order_count}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="panel panel-default text-white bg-secondary">
+                                                <div class="panel-heading text-center align-middle">Total Delivered</div>
+                                                <div class="panel-body">
+                                                    <p class="card-text h1 text-center align-middle">{{order_delivered}}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-
-                                    <div class="panel panel-default text-white bg-secondary mb-3">
-                                        <div class="panel-heading text-center align-middle">Delivered</div>
-                                        <div class="panel-body">
-                                            <p class="card-text h1 text-center align-middle">{{order_delivered}}</p>
-                                        </div>
-                                    </div>
 
                                 </div>
+
+
+
+                                <table class="table table-bordered shop_table cart table-hover mt-27">
+                                    <thead>
+                                        <tr class="bg-info">
+                                            <th class="product-name">Books</th>
+                                            <th class="product-name">Order Date</th>
+                                            <th class="product-price">Order Days </th>
+                                            <th class="product-quantity">Order Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for order in orders %}
+                                        <tr class="cart_item">                 
+                                            <td data-title="Product" class="product-name">
+                                                {% for item in order.orderitem_set.all %}
+                                                    <p>{{item}} | book id: {{item.book.id}}</p>
+                                                {% endfor %}
+                                            </td>
+                                            <td>{{order.order_date.date}}</td>
+                                            <td>{{order.order_date.date | timesince }}</td>
+                                            <td>{{order.status}}</td>            
+                                            
+                                        </tr>
+                                        {% endfor %}    
+
+                                    </tbody>
+                                </table>                                
                             </div>
-                            
-                            
 
 
                         </div>
 
                         <div class="row mt-5 mt-30">
-                            <table class="table table-bordered shop_table cart table-hover">
-                                <thead>
-                                    <tr class="bg-info">
-                                        <th class="product-name">Books</th>
-                                        <th class="product-name">Order Date</th>
-                                        <th class="product-price">Order Days </th>
-                                        <th class="product-quantity">Order Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for order in orders %}
-                                    <tr class="cart_item">                 
-                                        <td data-title="Product" class="product-name">
-                                            {% for item in order.orderitem_set.all %}
-                                                <p>{{item}} | book id: {{item.book.id}}</p>
-                                            {% endfor %}
-                                        </td>
-                                        <td>{{order.order_date.date}}</td>
-                                        <td>{{order.order_date.date | timesince }}</td>
-                                        <td>{{order.status}}</td>            
-                                        
-                                    </tr>
-                                    {% endfor %}    
-
-                                </tbody>
-                            </table>
                                 
                         </div>
 
