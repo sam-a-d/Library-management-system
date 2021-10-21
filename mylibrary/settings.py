@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'django_filters',
     'rental',
+    'management',
 
     'django_email_verification',
 ]

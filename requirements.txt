@@ -2,6 +2,8 @@ asgiref==3.4.1
 Django==3.2.7
 django-email-verification==0.1.0
 django-filter==21.1
+Jinja2==3.0.2
+MarkupSafe==2.0.1
 Pillow==8.3.2
 psycopg2-binary==2.9.1
 pytz==2021.1

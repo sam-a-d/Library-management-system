@@ -1,0 +1,88 @@
+{% extends 'general_template.html' %}
+{% load static %}
+    
+{% block general_template %}
+        <!-- Start: Cart Section -->
+        <div id="content" class="site-content">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+                    
+                    <div class="container mt-4 mvh-100 mt-30">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="text-center"> All the Books in our lirary <a class="text-success" href=""><i class="fa fa-plus-square"></i></a></h3>
+                                <hr>
+                                <table class="table table-bordered shop_table cart table-hover mt-27">
+                                    <thead>
+                                        <tr class="bg-info">
+                                            <th class="product-name">Serial</th>
+                                            <th class="product-name">Book Name</th>
+                                            <th class="product-name">Author</th>
+                                            <th class="product-price">Publisher </th>
+                                            <th class="product-quantity">Availability</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       
+                                    {% comment %} {% with index=1 %} {% endcomment %}
+                                        {% for book in books %}
+                                        <tr class="cart_item">                 
+                                            
+                                            {% if forloop.counter|divisibleby:2 %}
+                                                <td class="text-light bg-success">{{forloop.counter}}</td>
+                                                
+                                            {% else %}
+                                                <td class="text-light bg-info">{{forloop.counter}}</td>
+                                                
+                                            {% endif %}
+                                                
+                                           
+                                            <td>
+                                            {{book.name}}
+                                            </td>
+                                            <td>{{book.author}}</td>
+                                            <td>{{book.publisher}}</td>
+                                           
+                                            {% if book.stock_availability %}
+                                                <td> 
+                                                    <span style="font-size: 16px; color: Dodgerblue;">
+                                                        <i class="fa fa-check-square"></i>  
+                                                    </span>
+                                                
+                                                </td>
+                                            {% else %}
+                                                <td class="text-light bg-danger"> <i class="fa fa-times-circle"></i>  </td>
+                                            {% endif %}
+                                                
+                                            
+                                        </tr>
+                                        {% endfor %}    
+                                    {% comment %} {% endwith %} {% endcomment %}
+                                    
+                                    {% comment %} {% for n in range(books| length) %}
+                                    'HI'
+                                   {% endfor %} {% endcomment %}
+                                        
+
+                                    </tbody>
+                                </table>                                
+                            </div>
+
+
+                        </div>
+
+                        <div class="row mt-5 mt-30">
+                                
+                        </div>
+
+                    </div>
+
+                </main>
+            </div>
+
+            
+
+        </div>
+        <!-- End: Cart Section -->
+        
+ {% endblock general_template %}
