@@ -29,3 +29,8 @@ input[type=select]{
 .min-height-80{
     min-height: 80vh;
 }
+@media only screen and (min-width: 768px){
+    #booklist-image{
+        height: 400px;
+    }
+}
