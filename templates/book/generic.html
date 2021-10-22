@@ -1,0 +1,37 @@
+{% extends 'general_template.html' %}
+{% load static %}
+    
+    {% block general_template %}
+        <!-- Start: Products Section -->
+        <div id="content" class="site-content">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main" style="margin-top:40px">
+                    <div class="books-media-gird">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span></span>
+                                    <div class="books-gird">
+                                        <ul>
+                                        {% for book in books %}   
+                                            <li>
+                                                <div class="single-book-box">
+                                                    <i class="fa fa-pencil"></i>
+                                                </div>                                       
+                                            </li>
+                                        {% endfor %}
+                                        </ul>
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <!-- End: Products Section -->
+
+
+{% endblock general_template %}

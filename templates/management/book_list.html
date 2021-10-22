@@ -10,7 +10,17 @@
                     <div class="container mt-4 mvh-100 mt-30">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3 class="text-center"> All the Books in our lirary <a class="text-success" style="font-size: 24px; color: Dodgerblue;" href="{% url 'book-add' %}"><i class="fa fa-plus-square"></i></a></h3>
+                                <h3 class="text-center"> All the Books in our lirary 
+                                    <a class="text-success" style="font-size: 24px; color: Dodgerblue;" href="{% url 'book-add' %}">
+                                        <i class="fa fa-book"></i>
+                                    </a>
+                                    <a class="text-success" style="font-size: 22px; color: Dodgerblue;" href="{% url 'author-add' %}">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a class="text-success" style="font-size: 20px; color: Dodgerblue;" href="{% url 'publisher-add' %}">
+                                        <i class="fa fa-building"></i>
+                                    </a>
+                                </h3>
                                 <hr>
 
                                 
