@@ -13,12 +13,17 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.utils.decorators import method_decorator
 
 from  user.decorators import admin_only_access
+
+from root.filters import BookFilter
+from .filters import ListViewWithFilter
 # Create your views here.
 
 @method_decorator(admin_only_access, name='dispatch')
-class BookListView(ListView):
+class BookListView(ListViewWithFilter):
     model = Book
     context_object_name = 'books'
+    target_filter = BookFilter
+
 
 @method_decorator(admin_only_access, name='dispatch')
 class BookCreateView(CreateView):

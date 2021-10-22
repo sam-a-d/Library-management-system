@@ -12,10 +12,43 @@
                             <div class="col-md-12">
                                 <h3 class="text-center"> All the Books in our lirary <a class="text-success" style="font-size: 24px; color: Dodgerblue;" href="{% url 'book-add' %}"><i class="fa fa-plus-square"></i></a></h3>
                                 <hr>
+
+                                
+
+                                    <div class="panel panel-default text-white mb-3 mt-20 profile-panel">
+                                            <div class="panel-heading text-center align-middle">Filter Your Results </div>
+
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <form method="get" action="">
+                                
+                                                            <!-- Security token -->
+                                                            {% csrf_token %}
+                                                            <!-- Using the formset -->
+                                                            <span style="font-size: 18px;"><i class="fa fa-sort-numeric-desc" aria-hidden="true"></i></span> &nbsp;{{ filtered_items.form.library_book_no }}&nbsp;
+                                                            <span style="font-size: 18px;"><i class="fa fa-book" aria-hidden="true"></i></span> &nbsp;{{ filtered_items.form.name }}&nbsp;
+                                                            <span style="font-size: 18px;"><i class="fa fa-pencil" aria-hidden="true"></i></span> &nbsp;{{ filtered_items.form.author }} &nbsp;
+                                                            <span style="font-size: 16px;"><i class="fa fa-building" aria-hidden="true"></i></span> &nbsp;{{ filtered_items.form.publisher }}&nbsp;
+
+                                                            <input type="submit" value="Submit">
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                              
+                                             
+                                            </div>
+                                            
+                                        </div>
+
+                                    
+
+
                                 <table class="table table-bordered shop_table cart table-hover mt-27">
                                     <thead>
                                         <tr class="bg-info">
                                             <th class="product-name">Serial</th>
+                                            <th class="product-name">Book No</th>
                                             <th class="product-name">Book Nam </th>
                                             <th class="product-name">Author</th>
                                             <th class="product-price">Publisher </th>
@@ -35,7 +68,7 @@
                                                 
                                             {% endif %}
                                                 
-                                           
+                                            <td>{{book.library_book_no}}</td>
                                             <td>
                                                 <a class="text-success" style="color: Dodgerblue;" href="{% url 'book-update' book.id %}">
                                                     <i class="fa fa-edit"></i>
