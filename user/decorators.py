@@ -51,6 +51,9 @@ def admin_only_access(main_func):
     def wrapper_func(request, *args, **kwargs):
         group = None
 
+        if not request.user.is_authenticated:
+            return HttpResponse('You are not allowed to access this page')
+
         if request.user.groups.exists():
             group = request.user.groups.all()[0].name
 
