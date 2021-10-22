@@ -12,17 +12,22 @@
                             <div class="col-md-12">
                                 <h3 class="text-center"> Add Book in our lirary <a class="text-success" style="font-size: 24px; color: Dodgerblue;" href="{% url 'all_books' %}"><i class="fa fa-book"></i></a></h3>
                                 <hr>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8 custom-style-form">
 
-                                <form method="POST" enctype="multipart/form-data">
-                                
-                                    <!-- Security token -->
-                                    {% csrf_token %}
-                                
-                                    <!-- Using the formset -->
-                                    {{ form.as_p }}
+                                    <form method="POST" enctype="multipart/form-data">
                                     
-                                    <input type="submit" value="Submit">
-                                </form>
+                                        <!-- Security token -->
+                                        {% csrf_token %}
+                                    
+                                        <!-- Using the formset -->
+                                        {{ form.as_p }}
+                                        
+                                        <input type="submit" value="Submit">
+                                    </form>
+                                
+                                </div>
+                                <div class="col-md-2"></div>
                             </div>
 
 

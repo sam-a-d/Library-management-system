@@ -34,3 +34,11 @@ input[type=select]{
         height: 400px;
     }
 }
+
+.custom-style-form label {
+    width: 230px;
+}
+
+.custom-style-form input[type="text"],.custom-style-form input[type="number"],.custom-style-form select, .custom-style-form textarea {
+    width: 300px;
+}
