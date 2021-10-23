@@ -9,26 +9,9 @@
                     <div class="container-luid bg-custom1 p-20 text-light">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-5">
-                                    <div class="col-sm-6 col-md-6">
-                                        <div class="author-image">
-                                            <img src="{% static 'images/book/author/author-default.jpg' %}" alt="..." class="img-thumbnail">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-6 pt-20">
-                                        <p>Author: {{author.name}}</p>
-                                        
-                                        {% if author.nationality %}
-                                            <p>Nationality: {{author.nationality}}</p>
-                                        {% endif %}
-                                        {% if author.date_of_birth %}
-                                            <p>DOB: {{author.date_of_birth}}</p>
-                                        {% endif %}
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-md-7 pt-20 authod-bio">
-                                    <p>{{author.biography}}</p>
+                                
+                                <div class="col-md-7 pt-20">
+                                    <h2 class="text-center">Catelog: {{genre.name}}</h2>
                                 </div>
                                
                             </div>
@@ -42,7 +25,7 @@
                             <div class="col-md-12">
                                 
                                 <span></span>
-                                <h3 class="text-center p-20">All Books of {{author.name}}</div>
+                                <h3 class="text-center p-20">All {{genre.name}} Books</div>
                                 <hr>
                                 <div class="books-gird custom-books-gird">
                                     <ul>

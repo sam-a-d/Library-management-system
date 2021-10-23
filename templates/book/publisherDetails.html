@@ -16,19 +16,17 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6 pt-20">
-                                        <p>Author: {{author.name}}</p>
+                                        <p>Publisher: {{publisher.name}}</p>
                                         
-                                        {% if author.nationality %}
-                                            <p>Nationality: {{author.nationality}}</p>
+                                        {% if publisher.country %}
+                                            <p>Country: {{publisher.country}}</p>
                                         {% endif %}
-                                        {% if author.date_of_birth %}
-                                            <p>DOB: {{author.date_of_birth}}</p>
-                                        {% endif %}
+                                        
                                         
                                     </div>
                                 </div>
                                 <div class="col-md-7 pt-20 authod-bio">
-                                    <p>{{author.biography}}</p>
+                                    <p>{{publisher.description}}</p>
                                 </div>
                                
                             </div>
@@ -42,7 +40,7 @@
                             <div class="col-md-12">
                                 
                                 <span></span>
-                                <h3 class="text-center p-20">All Books of {{author.name}}</div>
+                                <h3 class="text-center p-20">All Books of    {{publisher.name}} publication</div>
                                 <hr>
                                 <div class="books-gird custom-books-gird">
                                     <ul>

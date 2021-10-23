@@ -134,22 +134,42 @@ def delete_order(request, order_id):
 
 class AuthorListView(ListView):
     model = Author
-    template_name="book/generic.html"
+    template_name="book/authorList.html"
 
 class PublisherListView(ListView):
     model = Publisher
-    template_name="book/generic.html"
+    template_name="book/publisherList.html"
     
 class GenreListView(ListView):
     model = Genre
-    template_name="book/generic.html"
+    template_name="book/genreList.html"
 
 class AuhtorDetailView(DetailView):
     model = Author
     template_name = 'book/authorDetails.html'
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['items'] = Book.objects.filter(author=self.kwargs.get('pk'))
+        context['books'] = Book.objects.filter(author=self.kwargs.get('pk'))
         return context
+
+class PublisherDetailView(DetailView):
+    model = Publisher
+    template_name = 'book/publisherDetails.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['books'] = Book.objects.filter(publisher=self.kwargs.get('pk'))
+        return context
+
+
+class GenreDetailView(DetailView):
+    model = Genre
+    template_name = 'book/genreDetails.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['books'] = Book.objects.filter(genre=self.kwargs.get('pk'))
+        return context
+
     

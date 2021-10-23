@@ -1140,7 +1140,7 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #ff7236;
+  color: #000;
   text-decoration: none;
 }
 a:hover,
@@ -7059,7 +7059,7 @@ template {
 }
 a {
   background-color: transparent;
-  color: #ff7236;
+  color: #000;
 }
 a:active,
 a:hover {
@@ -8133,7 +8133,6 @@ textarea::-webkit-input-placeholder {
 7.1. Links
 --------------------------------------------------------------*/
 a {
-  color: #ff7236;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
