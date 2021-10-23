@@ -1,14 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import *
+from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
+
 # from user.models import Order
 from rental.models import Order
-from django.contrib.auth.decorators import login_required
 from user.models import User
-
 from user.decorators import allowed_users, admin_only_access
 
-
+from .models import *
 from .forms import OrderForm
 from .filters import OrderFilter, BookFilter
 
@@ -130,3 +130,13 @@ def delete_order(request, order_id):
 
     context = {'order': order, 'user': user}
     return render(request, 'delete.html', context)
+
+
+class AuthorListView(ListView):
+    model = Author
+
+class PublisherListView(ListView):
+    model = Publisher
+
+class GenreListView(ListView):
+    model = Genre

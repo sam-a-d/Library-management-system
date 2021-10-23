@@ -1,6 +1,9 @@
 .mvh-100{
     min-height: 100vh;
 }
+.mvh-80{
+    min-height: 80vh;
+}
 
 .mt-30{
     margin-top: 30px;
@@ -41,4 +44,16 @@ input[type=select]{
 
 .custom-style-form input[type="text"],.custom-style-form input[type="number"],.custom-style-form select, .custom-style-form textarea {
     width: 300px;
+}
+
+.item-gird ul li{
+    border: 5px solid #4a7f56;
+    background: #00b170;
+    color: #fff;
+}
+.item-gird ul li:hover {
+    background: #0099b1;
+}
+.p-10{
+    padding: 10px 20px;
 }

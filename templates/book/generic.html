@@ -5,19 +5,22 @@
         <!-- Start: Products Section -->
         <div id="content" class="site-content">
             <div id="primary" class="content-area">
-                <main id="main" class="site-main" style="margin-top:40px">
+                <main id="main" class="site-main mvh-80" style="margin-top:40px">
                     <div class="books-media-gird">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
                                     <span></span>
-                                    <div class="books-gird">
+                                    <div class="books-gird item-gird">
                                         <ul>
-                                        {% for book in books %}   
+                                        {% for author in object_list %}   
                                             <li>
-                                                <div class="single-book-box">
-                                                    <i class="fa fa-pencil"></i>
-                                                </div>                                       
+                                                <a href="">
+                                                    <div class="p-10">
+                                                        <i class="fa fa-pencil"></i>
+                                                        <p>{{author.name}}</p>
+                                                    </div>                                       
+                                                </a>
                                             </li>
                                         {% endfor %}
                                         </ul>
