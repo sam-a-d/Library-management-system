@@ -58,7 +58,7 @@ class Author(models.Model):
 
     # TODO: Define fields here
     name = models.CharField(max_length=60)
-    natinality = models.ForeignKey(
+    nationality = models.ForeignKey(
         Natinality, null=True, on_delete=models.SET_NULL)
     date_of_birth = models.DateField()
     biography = models.TextField()
