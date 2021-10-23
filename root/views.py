@@ -134,9 +134,12 @@ def delete_order(request, order_id):
 
 class AuthorListView(ListView):
     model = Author
+    template_name="book/generic.html"
 
 class PublisherListView(ListView):
     model = Publisher
-
+    template_name="book/generic.html"
+    
 class GenreListView(ListView):
     model = Genre
+    template_name="book/generic.html"
