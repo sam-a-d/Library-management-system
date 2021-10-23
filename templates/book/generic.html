@@ -13,12 +13,12 @@
                                     <span></span>
                                     <div class="books-gird item-gird">
                                         <ul>
-                                        {% for author in object_list %}   
+                                        {% for item in object_list %}   
                                             <li>
-                                                <a href="">
+                                                <a href="{% url 'author-detail' item.id %}">
                                                     <div class="p-10">
                                                         <i class="fa fa-pencil"></i>
-                                                        <p>{{author.name}}</p>
+                                                        <p>{{item.name}}</p>
                                                     </div>                                       
                                                 </a>
                                             </li>

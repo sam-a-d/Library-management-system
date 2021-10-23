@@ -11,6 +11,7 @@ urlpatterns = [
     path('authors/', views.AuthorListView.as_view(), name='authors'),
     path('publisher/', views.PublisherListView.as_view(), name='publisher'),
     path('catalog/', views.GenreListView.as_view(), name='catalog'),
+    path('author/<int:pk>', views.AuhtorDetailView.as_view(), name='author-detail'),
     path('orders/', views.orders, name='orders'),
     path('user/<str:user_id>/', views.user, name='user'),
     path('create_order/', views.create_order, name='create_order'),

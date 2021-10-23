@@ -57,3 +57,50 @@ input[type=select]{
 .p-10{
     padding: 10px 20px;
 }
+.p-20{
+    padding: 20px;
+}
+
+.pt-20{
+    padding-top: 20px;
+}
+.bg-custom1{
+    background: #0099b1;
+}
+
+.text-light{
+    color: #fff;
+}
+
+.author-image .img-thumbnail{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+
+.author-image img{
+    margin: 0;
+    padding: 0;
+}
+
+.authod-bio{
+    text-align: justify;
+}
+
+@media only screen and (min-width: 768px){
+.custom-books-gird ul li {
+    width: 17%;
+}
+
+.custom-books-gird ul li #booklist-image {
+    height: 300px;
+}
+
+.custom-books-gird .single-book-box .post-detail {
+    width: 290px;
+}
+}
+.custom-books-gird ul li:nth-child(3n) .single-book-box .post-detail {
+    left: auto;
+    right: 0;
+}

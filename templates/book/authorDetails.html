@@ -1,0 +1,93 @@
+{% extends 'general_template.html' %}
+{% load static %}
+    
+    {% block general_template %}
+        <!-- Start: Products Section -->
+        <div id="content" class="site-content">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main mvh-80">
+                    <div class="container-luid bg-custom1 p-20 text-light">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="col-sm-6 col-md-6">
+                                        <div class="author-image">
+                                            <img src="{% static 'images/book/author/author-default.jpg' %}" alt="..." class="img-thumbnail">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 pt-20">
+                                        <p>Author: {{author.name}}</p>
+                                        
+                                        {% if author.nationality %}
+                                            <p>Nationality: {{author.nationality}}</p>
+                                        {% endif %}
+                                        {% if author.date_of_birth %}
+                                            <p>DOB: {{author.date_of_birth}}</p>
+                                        {% endif %}
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-7 pt-20 authod-bio">
+                                    <p>{{author.biography}}</p>
+                                </div>
+                               
+                            </div>
+
+                            
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <span></span>
+                                <h3 class="text-center p-20">All Books of {{author.name}}</div>
+                                <hr>
+                                <div class="books-gird custom-books-gird">
+                                    <ul>
+                                        {% for book in items %}
+                                            <li>
+                                                <figure id="booklist-image">
+                                                    <img src="{{book.photo.url}}" alt="Book">
+                                                    <figcaption>
+                                                        <p><strong>{{book.name}}</strong></p>
+                                                    </figcaption>
+                                                </figure> 
+                                                <div class="single-book-box">
+                                                    <div class="post-detail">
+                                                        
+                                                        <header class="entry-header">
+                                                            <h3 class="entry-title"><a href="books-media-detail-v1.html">{{book.name}}</a></h3>
+                                                            <ul>
+                                                                <li><strong>Publisher:</strong> {{book.publisher}}</li>
+                                                            </ul>
+                                                        </header>
+                                                        <div class="entry-content">
+                                                            <p>{{ book.sh_description }}</p>
+                                                        </div>
+                                                        <footer class="entry-footer">
+                                                            <a class="btn btn-primary" href="#">Read More</a>
+                                                            <button href="" rel="nofollow" data-product={{book.id}} data-action="add" class="update-cart" data-toggle="blog-tags" data-placement="top" title="Add TO CART">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </button>
+                                                        </footer>
+                                                    </div>
+                                                </div>                                       
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <!-- End: Products Section -->
+
+
+{% endblock general_template %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 # from user.models import Order
 from rental.models import Order
@@ -143,3 +143,13 @@ class PublisherListView(ListView):
 class GenreListView(ListView):
     model = Genre
     template_name="book/generic.html"
+
+class AuhtorDetailView(DetailView):
+    model = Author
+    template_name = 'book/authorDetails.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['items'] = Book.objects.filter(author=self.kwargs.get('pk'))
+        return context
+    
