@@ -7,7 +7,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('user/', include('user.urls')),
     path('email/', include(email_urls)),
-    path('books/', views.books, name='books'),
+    path('books/', views.BookListView.as_view(), name='books'),
     path('authors/', views.AuthorListView.as_view(), name='authors'),
     path('publisher/', views.PublisherListView.as_view(), name='publisher'),
     path('catalog/', views.GenreListView.as_view(), name='catalog'),

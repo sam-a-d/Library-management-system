@@ -11,7 +11,7 @@ from user.decorators import allowed_users, admin_only_access
 from .models import *
 from .forms import OrderForm
 from .filters import OrderFilter, BookFilter
-
+from management.filters import ListViewWithFilter
 
 # Create your views here.
 
@@ -25,23 +25,6 @@ def home(request):
         'book_filter': book_filter,
     }
     return render(request, 'home.html', context)
-
-
-def books(request):
-
-    books = Book.objects.filter(stock_availability=True)
-    genres = Genre.objects.all()
-
-    book_filter = BookFilter(request.GET, queryset=books)
-    books = book_filter.qs
-    context = {
-        'books': books,
-        'genres': genres,
-        'book_filter': book_filter,
-    }
-
-    return render(request, 'books.html', context)
-
 
 @login_required(login_url='login')
 # @allowed_users(allowed_groups=['admin'])
@@ -131,6 +114,13 @@ def delete_order(request, order_id):
     context = {'order': order, 'user': user}
     return render(request, 'delete.html', context)
 
+
+class BookListView(ListViewWithFilter):
+    model = Book
+    context_object_name = 'books'
+    target_filter = BookFilter
+    template_name = 'books.html'
+    paginate_by = 6
 
 class AuthorListView(ListView):
     model = Author
