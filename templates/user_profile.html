@@ -94,7 +94,7 @@
                                         <tr class="bg-info">
                                             <th class="product-name">Books</th>
                                             <th class="product-name">Order Date</th>
-                                            <th class="product-price">Order Days </th>
+                                            {% comment %} <th class="product-price">Order Days </th> {% endcomment %}
                                             <th class="product-quantity">Order Status</th>
                                         </tr>
                                     </thead>
@@ -107,7 +107,7 @@
                                                 {% endfor %}
                                             </td>
                                             <td>{{order.order_date.date}}</td>
-                                            <td>{{order.order_date.date | timesince }}</td>
+                                            {% comment %} <td>{{order.order_date.date | timesince }}</td> {% endcomment %}
                                             <td>{{order.status}}</td>            
                                             
                                         </tr>
